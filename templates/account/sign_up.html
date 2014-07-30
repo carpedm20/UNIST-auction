@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block unauthenticated_content %}
+
+{% load staticfiles %}
+
+<!-- <div class="overlay" /> </div> -->
+
+<div class="v-center">
+  <h1 class="logo login_and_register_logo size_large" id="logo">
+    <a class="logo_anchor" href="{% url 'core:index' %}">
+      <img class="sign-in-logo" src="{% static 'img/unicon_logo.png' %}">
+    </a>
+  </h1>
+
+  <form role="form-horizontal" action="{% url 'account:sign_up' %}" method="post">{% csrf_token %}
+    {% for field in form %}
+      <div class="fieldWrapper">
+        {{ field }}
+      </div>
+    {%  endfor %}
+
+    {% if form.errors %}
+      <div class="error" role="alert">
+        {% for error in form.non_field_errors  %}
+          <li>{{ error|striptags }}</li>
+        {% endfor %}
+
+        {% for field in form %}
+          {% if field.errors %}
+            <li>{{ field.label }} : {{ field.errors|striptags }}</li>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <button class="btn-sign-in btn-sign-in-big chrome blue container-full" type="submit">Sign up</button>
+  </form>
+</div>
+
+
+
+{% endblock %}

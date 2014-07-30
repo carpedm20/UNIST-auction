@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% load staticfiles %}
+
+{% block content %}
+
+<section id="auction">
+
+<div class="stuff">
+  <h2>{{ stuff.name }}</h2>
+  <img src="{{ stuff.image_url }}"/>
+</div>
+
+<div class="deal">
+  {% if user.is_authenticated %}
+    buy
+  {% else %}
+    <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;"><img src="{% static 'img/naver.png' %}" width="20px"></a>
+  {% endif %}
+</div>
+
+</section>
+
+{% endblock %}
