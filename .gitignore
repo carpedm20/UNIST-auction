@@ -3,5 +3,4 @@
 *.jar
 *.json
 *.sql
-config.py
 venv
