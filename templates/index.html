@@ -18,28 +18,9 @@
   </div>
   <div class="deal">
     {% if user.is_authenticated %}
-      <div class="col-xs-6 col-xs-offset-3">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h2 class="panel-title">{{ request.user.korean_name }} 님의 도전</h2>
-          </div>
-          <div class="panel-body">
-            <form action="{% url 'core:index' %}" method="get">
-              <div class="input-group col-xs-12">
-                <div class="input-group-addon">#</div>
-                <input type="text" class="form-control" id="reason" placeholder="한줄 구매 사유">
-              </div>
-              <br/>
-              <div class="input-group input-group-lg">
-                <input type="number" class="form-control" name="value" placeholder="최소 {{ stuff.recent_price|intcomma}} 원 이상">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="submit">Go!</button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
+      {% include 'card.html' %}
+      {% include 'card.html' with valid=False %}
+      {% include 'card.html' %}
     {% else %}
       <div class="fb-join"> 
         <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;">
