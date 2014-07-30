@@ -24,6 +24,9 @@ class AccountManager(models.Manager):
 class Account(AbstractBaseUser):
     username = models.CharField(max_length=40, unique=True, db_index=True)
     email = models.EmailField(max_length=256, null=True, blank=True, db_index=True)
+
+    ko_name = models.CharField(max_length=100, null=True, blank=True)
+
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
 
@@ -38,6 +41,27 @@ class Account(AbstractBaseUser):
 
     def is_authenticated(self):
         return True
+
+    @property
+    def korean_name(self):
+        if self.ko_name:
+            return self.ko_name
+
+        facebook = self.social_auth.filter(provider='facebook')
+
+        if facebook:
+            import requests, json
+
+            facebook = facebook[0]
+
+            url = "https://api.facebook.com/method/fql.query?query=select+name+from+profile+where+id=%s&access_token=%s&locale=ko_KR&format=json"\
+                % (facebook.extra_data['id'],
+                   facebook.extra_data['access_token'])
+
+            self.ko_name = json.loads(requests.get(url).text)[0]['name']
+            self.save()
+        else:
+            return None
 
     @property
     def get_username(self):

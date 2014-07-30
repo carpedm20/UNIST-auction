@@ -14,12 +14,34 @@ class Stuff(models.Model):
     def __unicode__(self):
         return u"%s : %s원" % (name, price)
 
+    @property
+    def recent_price(self):
+        if self.deal_set.count() == 0:
+            return self.start_price
+        else:
+            max = 0
+            for deal in self.deal_set.all():
+                if deal.price > max:
+                    max = deal.price
+            return max
+
 class Deal(models.Model):
-    stuff = models.OneToOneField(Stuff)
+    stuff = models.ForeignKey(Stuff)
     account = models.OneToOneField(Account)
 
     price = models.IntegerField()
     reason = models.TextField()
 
     def __uniocde__(self):
-        return u"%s [%s] : ₩ %s" % (account, stuff, price)
+        return u"%s [%s] : %s원" % (account, stuff, price)
+
+    def save(self, *args, **kwargs):
+        deal_count = self.stuff.deal_set.count()
+
+        recent_deal = self.stuff.deal_set.all()[deal_count - 1]
+
+        if self.price > recent_deal.price:
+            super(Deal, self).save(*args, **kwargs)
+        else:
+            msg = "오류: 불가능한 가격입니다."
+            raise Exception(msg)

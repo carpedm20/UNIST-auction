@@ -7,7 +7,7 @@ body {
   font-family: 'Nanum Gothic', Arial, sans-serif;
 
   h1, h2, h3 {
-    font-family: 'Open Sans Condensed', 'Nanum Gothic', sans-serif;
+    font-family: 'Nanum Gothic', sans-serif;
   }
 
   ul, li {
@@ -44,6 +44,14 @@ body {
     }
   }
 
+  .tile {
+    background-color: #eff0f2;
+    border-radius: 6px;
+    padding: 14px;
+    position: relative;
+    text-align: center;
+  }
+
   #auction {
     .stuff-bg {
       background-size: auto 510px;
@@ -64,7 +72,11 @@ body {
 
       
       .deal {
-        margin-top: 100px;
+        margin-top: 50px;
+
+        .thumb {
+          width: 180px;
+        }
       }
 
       .title {
@@ -74,6 +86,10 @@ body {
         font-weight: 700;
         text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
         margin-bottom: 0;
+      }
+
+      .price {
+        font-weight: 600;
       }
 
       .detail {
@@ -101,6 +117,7 @@ body {
   #auction {
     width: 760px;
     height: 560px;
+    min-height: 560px;
     position: absolute;
     left: 50%;
     top: 50%;

@@ -2,6 +2,7 @@ FACEBOOK_APP_ID='387661514698415'
 FACEBOOK_API_SECRET='0e4e65e38f54da96e9421284e5b89b04'
 
 FACEBOOK_AUTH_EXTRA_ARGUMENTS = {'display': 'popup'}
+FACEBOOK_EXTRA_DATA = [('username', 'username'), ('name','name')]
 
 #########################
 # SOCIAL AUTH settings
@@ -31,6 +32,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
     'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details',
     'social_auth.backends.pipeline.user.update_user_details',
 
     'account.pipelines.get_user_avatar',

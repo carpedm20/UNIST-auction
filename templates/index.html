@@ -2,7 +2,7 @@
 
 {% block title %}{{ title }}{% endblock %}
 
-{% load staticfiles %}
+{% load humanize %}
 
 {% block content %}
 
@@ -13,10 +13,33 @@
   <div class="stuff-detail text-center">
     <h1 class="title">{{ stuff.name }}</h1>
     <p class="detail">{{ stuff.detail }}</p>
+    <button class="btn btn-primary btn-lg" disabled>시작 가격 : {{ stuff.start_price|intcomma }} 원</button>
+    <button class="btn btn-danger btn-lg">현재 가격 : {{ stuff.recent_price|intcomma }} 원</button>
   </div>
   <div class="deal">
     {% if user.is_authenticated %}
-      buy
+      <div class="col-xs-6 col-xs-offset-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2 class="panel-title">{{ request.user.korean_name }} 님의 도전</h2>
+          </div>
+          <div class="panel-body">
+            <form action="{% url 'core:index' %}" method="get">
+              <div class="input-group col-xs-12">
+                <input type="text" class="form-control" id="inputSuccess3">
+                <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+              </div>
+              <br/>
+              <div class="input-group input-group-lg">
+                <input type="number" class="form-control" name="value" placeholder="최소 {{ stuff.recent_price|intcomma}} 원 이상">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="submit">Go!</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     {% else %}
       <div class="fb-join"> 
         <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;">
