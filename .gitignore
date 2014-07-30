@@ -1,6 +1,32 @@
+# django
+*.log
+*.pot
+*.py[co]
 *.pyc
-*.tar*
-*.jar
+*.swp
+local_settings.py
+*migrations*
+
+# static
+media
+data
+
+# scrapper
+# database
+#*.json
+scrapper
+
+# database
 *.json
-*.sql
+#*.sqlite3
+studyplan/local_settings.py
+
+# node.js
+node*
+
+# etc
 venv
+run.sh
+#testcase.py
+cheatsheet.md
+config.py
