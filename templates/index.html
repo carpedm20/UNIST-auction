@@ -18,9 +18,10 @@
   </div>
   <div class="deal">
     {% if user.is_authenticated %}
-      {% include 'card.html' %}
-      {% include 'card.html' with valid=False %}
-      {% include 'card.html' %}
+      {% include 'card.html' with disabled=False %}
+      {% for deal in stuff.deal_set.all %}
+        {% include 'card.html' with disabled=True deal=deal %}
+      {% endfor %}
     {% else %}
       <div class="fb-join"> 
         <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;">

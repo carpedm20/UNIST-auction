@@ -6,10 +6,15 @@
       <h2 class="panel-title">{{ request.user.korean_name }} 님의 도전</h2>
     </div>
     <div class="panel-body">
-      <form action="{% url 'core:index' %}" method="get">
+      <form action="{% url 'core:index' %}" method="post">
+        {% csrf_token %}
         <div class="input-group col-xs-12">
           <div class="input-group-addon">#</div>
-          <input type="text" class="form-control" id="reason" placeholder="한줄 구매 사유">
+          {% if disabled %}
+          <input type="text" class="form-control" id="reason" value="{{ deal.reason }}" disabled>
+          {% else %}
+            <input type="text" class="form-control" id="reason" placeholder="한줄 구매 사유">
+          {% endif %}
         </div>
         <br/>
         <div class="input-group input-group-lg">
