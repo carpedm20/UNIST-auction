@@ -25,6 +25,7 @@ body {
   }
 
   #main{
+    overflow: visible !important;
     min-height: 100%;
     padding: 20px;
     border-radius: 15px;
@@ -43,11 +44,99 @@ body {
     }
   }
 
+  #auction {
+    .stuff-bg {
+      background-size: auto 510px;
+      background-repeat: no-repeat;
+      opacity: 0.5; 
+      -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";       /* IE 8 */
+      filter: alpha(opacity=50);  /* IE 5-7 */
+      -moz-opacity: 0.5;          /* Netscape */
+      -khtml-opacity: 0.5; 
+      height: 100%;
+    }
+
+    .stuff {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      
+      .deal {
+        margin-top: 100px;
+      }
+
+      .title {
+        margin: 0;
+        color: 444854;
+        font-size: 3em;
+        font-weight: 700;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        margin-bottom: 0;
+      }
+
+      .detail {
+        margin-top: 1.5em;
+      }
+
+      .stuff-img {
+        height: 600px;
+      }
+
+      .stuff-detail {
+        margin-top: 200px;
+      }
+    }
+  }
+
   nav {
     background: #fff;
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
     height: 50px;
     left: 0;
     top: 0;
+  }
+
+  #auction {
+    width: 760px;
+    height: 560px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -380px;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .fb-join {
+    border: #4969F0;
+    background-color: #4969F0;
+    width: 185px;
+    height: 50px;
+    margin-left: 305px;
+    cursor: pointer;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-radius: 10px;
+
+    .fb-join-image {
+      position: absolute;
+      margin-left: 22px;
+      margin-top: 13px;
+    }
+
+    a {
+      color: white;
+      font-size: 13px;
+    }
+
+    .fb-join-text {
+      position: absolute;
+      margin-top: 18px;
+      margin-left: 50px;
+    }
   }
 }

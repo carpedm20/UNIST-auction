@@ -6,3 +6,6 @@ init:
 
 workon:
 	workon comment
+
+freeze:
+	pip freeze > requirements.txt

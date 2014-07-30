@@ -43,6 +43,11 @@ INSTALLED_APPS = (
     'account',
 )
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -105,5 +110,7 @@ if DEBUG:
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
+
+AUTH_USER_MODEL = 'account.Account'
 
 from config import *

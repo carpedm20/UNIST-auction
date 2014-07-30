@@ -16,7 +16,7 @@ from core.models import Stuff, Deal
 
 stuff = Stuff(name        = "7개월간 코딩만한 크고 가벼운 노트북",
               start_price = "550000",
-              img_url     = "http://timg.danawa.com/prod_img/500000/122/151/img/2151122_1.jpg",
+              img_url     = "http://s1.emagst.net/products/499/498990/media/res_abddac6ff1b5be308adb5f4d1548da68.png",
               detail      = "15.6인치 1920x1080 2.0Kg i7-4500U (1.8GHz) 8GB GT750M")
 
 stuff.save()

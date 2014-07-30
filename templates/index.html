@@ -7,19 +7,27 @@
 {% block content %}
 
 <section id="auction">
+<div class="stuff-bg" style="background-image: url({{ stuff.img_url }});"></div>
 
 <div class="stuff">
-  <h2>{{ stuff.name }}</h2>
-  <img src="{{ stuff.image_url }}"/>
+  <div class="stuff-detail text-center">
+    <h1 class="title">{{ stuff.name }}</h1>
+    <p class="detail">{{ stuff.detail }}</p>
+  </div>
+  <div class="deal">
+    {% if user.is_authenticated %}
+      buy
+    {% else %}
+      <div class="fb-join"> 
+        <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;">
+          <div class="fb-join-image"><img src="https://d3kif4no5sfwzt.cloudfront.net/assets/intro/intro_btn_fb-86680a3702eb0c41f5cf6412554e2360.png"></div>
+          <div class="fb-join-text">페이스북으로 로그인</div>
+        </a>
+      </div>
+    {% endif %}
+  </div>
 </div>
 
-<div class="deal">
-  {% if user.is_authenticated %}
-    buy
-  {% else %}
-    <a href="{% url 'socialauth_begin' 'facebook' %}" onclick="window.open(this.href,'targetWindow','toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=400,height=300');return false;"><img src="{% static 'img/naver.png' %}" width="20px"></a>
-  {% endif %}
-</div>
 
 </section>
 
