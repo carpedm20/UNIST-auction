@@ -9,3 +9,8 @@ workon:
 
 freeze:
 	pip freeze > requirements.txt
+
+heroku:
+	git push heroku master
+	heroku ps
+	heroku open
