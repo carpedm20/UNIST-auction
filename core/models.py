@@ -7,6 +7,7 @@ from account.models import Account
 class Stuff(models.Model):
     name = models.CharField(max_length=100)
     start_price = models.IntegerField()
+    min_diff_price = models.IntegerField()
     last_update = models.DateField(auto_now=True)
     img_url = models.URLField()
     detail = models.TextField()
@@ -31,6 +32,7 @@ class Deal(models.Model):
 
     price = models.IntegerField()
     reason = models.TextField()
+    is_name_filter = models.BooleanField()
 
     def __uniocde__(self):
         return u"%s [%s] : %s원" % (account, stuff, price)
@@ -40,7 +42,7 @@ class Deal(models.Model):
 
         recent_deal = self.stuff.deal_set.all()[deal_count - 1]
 
-        if self.price > recent_deal.price:
+        if self.price > recent_deal.price + self.stuff.min_diff_price:
             super(Deal, self).save(*args, **kwargs)
         else:
             msg = "오류: 불가능한 가격입니다."
