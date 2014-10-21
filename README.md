@@ -3,7 +3,7 @@ UNIST Auction
 
 Auction for UNIST
 
-[demo](pam.herokuapp.com)
+[demo](http://pam.herokuapp.com/)
 
 
 Screenshot
